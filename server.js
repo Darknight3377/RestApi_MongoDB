@@ -6,6 +6,7 @@ const bookRoutes = require('./routes/book-routes');
 const userRoutes = require('./routes/auth-routes');
 const homeRoutes = require('./routes/home-routes');
 const adminRoutes = require('./routes/admin-routes');
+const imageRoutes = require('./routes/image-routes');
 
 const app = express();
 const PORT = process.env.PORT;
@@ -21,6 +22,7 @@ app.use("/api/books", bookRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/home", homeRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/image", imageRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
