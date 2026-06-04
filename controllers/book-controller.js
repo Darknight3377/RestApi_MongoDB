@@ -69,6 +69,29 @@ const addBook = async (req, res) => {
     });
   }
 };
+const getBookWithRefAuthor = async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id).populate('refAuthor');
+    if(!book) {
+    return res.status(400).send({
+      success: false,
+      message: "Book not found"
+    });
+    }
+    res.status(201).send({
+      success: true,
+      message: "Book found successfully",
+      data: book,
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).send({
+      success: false,
+      message: "Something went wrong while getting book",
+      error: e,
+    });
+  }
+};
 
 const updateBookById = async (req, res) => {
   try {
@@ -148,4 +171,5 @@ module.exports = {
   addBook,
   updateBookById,
   deleteBookById,
+  getBookWithRefAuthor
 };
